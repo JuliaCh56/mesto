@@ -1,0 +1,5 @@
+.profile {
+  padding: calc(36.25/1024*100%) 0 calc(47.25/1024*100%);
+  display: flex;
+  margin: 0;
+}
