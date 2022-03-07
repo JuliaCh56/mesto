@@ -1,3 +1,15 @@
 .footer__copyright {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #545454;
+  margin: 0;
+}
 
+@media screen and (min-width: 990px) {
+  .footer__author {
+    font-size: 18px;
+    line-height: 1.22;
+  }
 }

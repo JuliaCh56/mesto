@@ -1,0 +1,22 @@
+.popup__field {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #000000;
+  border: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding: 0;
+  padding-bottom: 13px;
+  margin: 0;
+
+}
+
+.popup__field:focus {
+  border: 1px solid #29B0D9;
+  box-shadow: 0 0 5px rgba(41, 176, 217, 1);
+  outline:0;
+}

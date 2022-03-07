@@ -14,62 +14,70 @@
   <main class="content">
     <section class="profile">
       <img class="profile__avatar" src="./images/Аватарка.jpg" alt="аватарка">
-      <div class="profile__profile-info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" name="editButton" type="button" value="edit-button"></button>
         <p class="profile__subtitle">Исследователь океана</p>
-        <button class="profile__edit-button" name="editButton" type="submit" value="edit-button"></button>
-      </div>
-      <button class="profile__add-button" name="addButton" type="submit" value="add-button"></button>
+        <button class="profile__add-button" name="addButton" type="button" value="add-button"></button>
     </section>
     <section class="elements">
-      <div class="element">
+      <ul class="elements__zone">
+      <li class="element">
         <img class="element__foto" src="./images/Карачевск.jpg" alt="Карачаевск">
         <div class="element__name-zone">
           <h2 class="element__title">Карачаевск</h2>
-          <div class="element__like"></div>
+          <button class="element__like" type="button" name="like"></button>
         </div>
-      </div>
-      <div class="element">
+      </li>
+      <li class="element">
         <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
         <div class="element__name-zone">
           <h2 class="element__title">Гора Эльбрус</h2>
-          <div class="element__like"></div>
+          <button class="element__like" type="button" name="like"></button>
         </div>
-      </div>
-      <div class="element">
+      </li>
+      <li class="element">
         <img class="element__foto" src="./images/Домбай.jpg" alt="Домбай">
         <div class="element__name-zone">
           <h2 class="element__title">Домбай</h2>
-          <div class="element__like"></div>
+          <button class="element__like" type="button" name="like"></button>
         </div>
-      </div>
-      <div class="element">
+      </li>
+      <li class="element">
         <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
         <div class="element__name-zone">
           <h2 class="element__title">Гора Эльбрус</h2>
-          <div class="element__like"></div>
+          <button class="element__like" type="button" name="like"></button>
         </div>
-      </div>
-      <div class="element">
+      </li>
+      <li class="element">
         <img class="element__foto" src="./images/Домбай.jpg" alt="Домбай">
         <div class="element__name-zone">
           <h2 class="element__title">Домбай</h2>
-          <div class="element__like"></div>
+          <button class="element__like" type="button" name="like"></button>
         </div>
-      </div>
-      <div class="element">
+      </li>
+      <li class="element">
         <img class="element__foto" src="./images/Карачевск.jpg" alt="Карачаевск">
         <div class="element__name-zone">
           <h2 class="element__title">Карачаевск</h2>
-          <div class="element__like"></div>
+          <button class="element__like" type="button" name="like"></button>
         </div>
-      </div>
+      </li>
+    </ul>
     </section>
+  </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022, Юлия Чугунова</p>
     </footer>
-  </main>
-
-
+    <section class="popup">
+      <form class="popup__container" name="popup">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" class="popup__field popup__field_type_name" name="name" id="name" value="" placeholder="Имя">
+        <input type="text" class="popup__field popup__field_type_activity" name="activity" id="activity" value="" placeholder="О себе">
+        <input type="submit" name="save" value="Сохранить" class="popup__button-save">
+        <div class="popup__button-close"></div>
+      </form>
+    </section>
+    <script src="./skript/index.js"></script>
 </body>
 </html>
