@@ -2,7 +2,6 @@ let popup = document.querySelector('.popup'); //определение обла�
 let formElement = popup.querySelector('.popup__container'); // форма
 let editButton = document.querySelector('.profile__edit-button'); //кнопка редактирования и открытия попапа 
 let closeButton = popup.querySelector('.popup__button-close'); //кнопка закрытия попап
-let saveButton = popup.querySelector('.popup__button-save'); //кнопка сохранения
 let nameInput = popup.querySelector('.popup__field_type_name'); // поле ввода имени
 let activityInput = popup.querySelector('.popup__field_type_activity'); // поле ввода "о себе"
 let profileName = document.querySelector('.profile__title'); // отображение имени
@@ -17,20 +16,20 @@ let togglePopup = () => {
  }
 }
 
-popup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget){
-    togglePopup();
-  }
-})
+// popup.addEventListener('click', (event) => {
+//   if (event.target === event.currentTarget){
+//     togglePopup();
+//   }
+// })
 
 function formSubmitHandler(evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileActivity.textContent = activityInput.value;
+  togglePopup();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
 
 editButton.addEventListener('click', togglePopup);
 closeButton.addEventListener('click', togglePopup);
-saveButton.addEventListener('click', togglePopup);

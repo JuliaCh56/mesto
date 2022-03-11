@@ -7,8 +7,8 @@
 
 @media screen and (min-width: 990px){
   .footer {
-    padding-top: calc(67/1024*100%);
-    padding-bottom: calc(60/1024*100%);
+    padding-top: 67px;
+    padding-bottom: 60px;
     padding-left: 0;
   }
 }

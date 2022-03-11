@@ -9,3 +9,10 @@
   align-self: center;
   object-fit: cover;
 }
+
+@media screen and (min-width: 990px){
+  .profile__avatar {
+  justify-self: start;
+  align-self: flex-start;
+  }
+}

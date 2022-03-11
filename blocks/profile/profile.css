@@ -15,8 +15,8 @@
 
 @media screen and (min-width: 990px) {
   .profile {
-    padding: calc(36.25/1024*100%) 0 calc(45.25/1024*100%);
-    grid-template-columns: 168.75px max-content repeat(2, auto);
+    padding: 36.25px 0 51px;
+    grid-template-columns: 120px max-content repeat(2, auto);
     grid-template-areas:
     "avatar title edit-button add-button"
     "avatar subtitle . add-button";

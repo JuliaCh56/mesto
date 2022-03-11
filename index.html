@@ -70,14 +70,17 @@
       <p class="footer__copyright">&copy; 2022, Юлия Чугунова</p>
     </footer>
     <section class="popup">
-      <form class="popup__container" name="popup">
+      <div class="popup__container">
+        <button class="popup__button-close" name="closeButton" type="button" value="close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="popup">
         <input type="text" class="popup__field popup__field_type_name" name="name" id="name" value="" placeholder="Имя">
         <input type="text" class="popup__field popup__field_type_activity" name="activity" id="activity" value="" placeholder="О себе">
-        <input type="submit" name="save" value="Сохранить" class="popup__button-save">
-        <div class="popup__button-close"></div>
+        <button type="submit" name="save" value="Сохранить" class="popup__button-save">Сохранить</button>
       </form>
+    </div>
+  
     </section>
-    <script src="./skript/index.js"></script>
+    <script src="./skripts/index.js"></script>
 </body>
 </html>

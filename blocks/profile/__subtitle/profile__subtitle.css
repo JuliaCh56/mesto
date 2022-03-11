@@ -1,5 +1,5 @@
 .profile__subtitle {
-  max-width: 282px;
+  max-width: 189px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -12,6 +12,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
+  justify-self: center;
 }
 
 @media screen and (min-width: 990px) {
@@ -21,5 +22,7 @@
     margin-bottom: 0;
     text-align: start;
     max-width: 236px;
+    justify-self: start;
+    margin-left: 26.25px;
   }
 }
