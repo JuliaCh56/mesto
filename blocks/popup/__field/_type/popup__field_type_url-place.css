@@ -1,0 +1,9 @@
+.popup__field_type_url-place {
+  margin-bottom: 45px;
+}
+
+@media screen and (min-width: 990px) {
+  .popup__field_type_url-place {
+    margin-bottom: 48px;
+  }
+}

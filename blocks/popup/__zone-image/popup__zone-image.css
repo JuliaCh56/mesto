@@ -1,0 +1,10 @@
+.popup__zone-image {
+  position: relative;
+  margin: 0 40px;
+}
+
+@media screen and (min-width: 990px) {
+  .popup__zone-image {
+    margin: 0;
+  }
+}

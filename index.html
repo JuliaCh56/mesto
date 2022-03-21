@@ -21,57 +21,16 @@
     </section>
     <section class="elements">
       <ul class="elements__zone">
-      <li class="element">
-        <img class="element__foto" src="./images/Карачевск.jpg" alt="Карачаевск">
-        <div class="element__name-zone">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__like" type="button" name="like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
-        <div class="element__name-zone">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__like" type="button" name="like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img class="element__foto" src="./images/Домбай.jpg" alt="Домбай">
-        <div class="element__name-zone">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__like" type="button" name="like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
-        <div class="element__name-zone">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__like" type="button" name="like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img class="element__foto" src="./images/Домбай.jpg" alt="Домбай">
-        <div class="element__name-zone">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__like" type="button" name="like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img class="element__foto" src="./images/Карачевск.jpg" alt="Карачаевск">
-        <div class="element__name-zone">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__like" type="button" name="like"></button>
-        </div>
-      </li>
     </ul>
     </section>
   </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022, Юлия Чугунова</p>
     </footer>
-    <section class="popup">
+
+    <section class="popup" id="popup-edit">
       <div class="popup__container">
-        <button class="popup__button-close" name="closeButton" type="button" value="close-button"></button>
+        <button class="popup__button-close" id='button-close-edit' name="closeButton" type="button" value="close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="popup">
         <input type="text" class="popup__field popup__field_type_name" name="name" id="name" value="" placeholder="Имя">
@@ -79,8 +38,39 @@
         <button type="submit" name="save" value="Сохранить" class="popup__button-save">Сохранить</button>
       </form>
     </div>
-  
     </section>
+
+    <section class="popup" id="popup-add">
+      <div class="popup__container">
+        <button class="popup__button-close" id='button-close-add' name="closeButton" type="button" value="close-button"></button>
+        <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" id="popup-form-add" name="popup-form-add">
+        <input type="text" class="popup__field popup__field_type_name-place" name="name-place" id="name-place" value="" placeholder="Название">
+        <input type="url" class="popup__field popup__field_type_url-place" name="url-place" id="url-place" value="" placeholder="Ссылка на картинку">
+        <button type="submit" name="create" id="create" value="Создать" class="popup__button-save">Создать</button>
+      </form>
+    </div>
+    </section>
+
+    <section class="popup popup_big-image" id="popup-image">
+      <div class="popup__zone-image">
+        <img src="./images/Эльбрус.jpg" alt="Гора Эльбрус" class="popup__image">
+        <p class="popup__image-caption">Гора Эльбрус</p>
+        <button class="popup__button-close" id="button-close-image" name="closeButton" type="button" value="close-button"></button>
+      </div>
+    </section>
+
+    <template class="element__template"> 
+    <li class="element">
+      <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
+      <button class="element__delete" type="button" name="delete"></button>
+      <div class="element__name-zone">
+        <h2 class="element__title">Гора Эльбрус</h2>
+        <button class="element__like" type="button" name="like"></button>
+      </div>
+    </li>
+  </template>
+    <script src="./skripts/initial-cards.js"></script>
     <script src="./skripts/index.js"></script>
 </body>
 </html>

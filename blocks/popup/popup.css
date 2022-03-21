@@ -6,9 +6,12 @@
   right: 0;
   background-color: rgba(0, 0, 0, .5);
   padding: 123px 0 0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: start;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s, visibility .5s linear;
 }
 
 @media screen and (min-width: 990px) {
