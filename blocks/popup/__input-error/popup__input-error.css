@@ -1,0 +1,24 @@
+.popup__input-error {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FF0000;
+  margin: 0;
+  box-sizing: border-box;
+  display: block;
+  height: 12px;
+  min-height: 30px;
+  opacity: 0;
+}
+
+.popup__input-error:nth-of-type(2) {
+  margin-bottom: 15px;
+}
+
+@media screen and (min-width: 990px) {
+  .popup__input-error:nth-of-type(2) {
+    margin-bottom: 18.34px;
+  }
+}

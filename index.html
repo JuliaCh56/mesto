@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
+
 <body class="page">
   <header class="header">
     <img class="header__logo" src="./images/logo.svg" alt="логотип">
@@ -14,53 +16,64 @@
   <main class="content">
     <section class="profile">
       <img class="profile__avatar" src="./images/Аватарка.jpg" alt="аватарка">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button" name="editButton" type="button" value="edit-button"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
-        <button class="profile__add-button" name="addButton" type="button" value="add-button"></button>
+      <h1 class="profile__title">Жак-Ив Кусто</h1>
+      <button class="profile__edit-button" name="editButton" type="button" value="edit-button"></button>
+      <p class="profile__subtitle">Исследователь океана</p>
+      <button class="profile__add-button" name="addButton" type="button" value="add-button"></button>
     </section>
     <section class="elements">
       <ul class="elements__zone">
-    </ul>
+      </ul>
     </section>
   </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2022, Юлия Чугунова</p>
-    </footer>
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2022, Юлия Чугунова</p>
+  </footer>
 
-    <section class="popup" id="popup-edit">
-      <div class="popup__container">
-        <button class="popup__button-close" id='button-close-edit' name="closeButton" type="button" value="close-button"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="popup">
-        <input type="text" class="popup__field popup__field_type_name" name="name" id="name" value="" placeholder="Имя">
-        <input type="text" class="popup__field popup__field_type_activity" name="activity" id="activity" value="" placeholder="О себе">
+  <section class="popup" id="popup-edit">
+    <div class="popup__container">
+      <button class="popup__button-close" id='button-close-edit' name="closeButton" type="button"
+        value="close-button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" id="popup-form-edit" name="popup-form-edit">
+        <input type="text" class="popup__field" name="name" id="name" value="" placeholder="Имя"
+          minlength="2" maxlength="40" required>
+        <span id="name-error" class="popup__input-error"></span>
+        <input type="text" class="popup__field" name="activity" id="activity" value=""
+          placeholder="О себе" minlength="2" maxlength="200" required>
+        <span id="activity-error" class="popup__input-error"></span>
         <button type="submit" name="save" value="Сохранить" class="popup__button-save">Сохранить</button>
       </form>
     </div>
-    </section>
+  </section>
 
-    <section class="popup" id="popup-add">
-      <div class="popup__container">
-        <button class="popup__button-close" id='button-close-add' name="closeButton" type="button" value="close-button"></button>
-        <h2 class="popup__title">Новое место</h2>
+  <section class="popup" id="popup-add">
+    <div class="popup__container">
+      <button class="popup__button-close" id='button-close-add' name="closeButton" type="button"
+        value="close-button"></button>
+      <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" id="popup-form-add" name="popup-form-add">
-        <input type="text" class="popup__field popup__field_type_name-place" name="name-place" id="name-place" value="" placeholder="Название">
-        <input type="url" class="popup__field popup__field_type_url-place" name="url-place" id="url-place" value="" placeholder="Ссылка на картинку">
+        <input type="text" class="popup__field" name="place" id="place" value=""
+          placeholder="Название" minlength="2" maxlength="30" required>
+        <span id="place-error" class="popup__input-error"></span>
+        <input type="url" class="popup__field" name="url" id="url" value=""
+          placeholder="Ссылка на картинку" required>
+        <span id="url-error" class="popup__input-error"></span>
         <button type="submit" name="create" id="create" value="Создать" class="popup__button-save">Создать</button>
       </form>
     </div>
-    </section>
+  </section>
 
-    <section class="popup popup_big-image" id="popup-image">
-      <div class="popup__zone-image">
-        <img src="./images/Эльбрус.jpg" alt="Гора Эльбрус" class="popup__image">
-        <p class="popup__image-caption">Гора Эльбрус</p>
-        <button class="popup__button-close" id="button-close-image" name="closeButton" type="button" value="close-button"></button>
-      </div>
-    </section>
+  <section class="popup popup_big-image" id="popup-image">
+    <div class="popup__zone-image">
+      <img src="./images/Эльбрус.jpg" alt="Гора Эльбрус" class="popup__image">
+      <p class="popup__image-caption">Гора Эльбрус</p>
+      <button class="popup__button-close" id="button-close-image" name="closeButton" type="button"
+        value="close-button"></button>
+    </div>
+  </section>
 
-    <template class="element__template"> 
+  <template class="element__template">
     <li class="element">
       <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
       <button class="element__delete" type="button" name="delete"></button>
@@ -70,7 +83,9 @@
       </div>
     </li>
   </template>
-    <script src="./scripts/initial-cards.js"></script>
-    <script src="./scripts/index.js"></script>
+  <script src="./scripts/initial-cards.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
+
 </html>
