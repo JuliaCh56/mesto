@@ -27,10 +27,10 @@ const hideInputError = (formElement, inputElement, config) => {
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList, buttonElement, config)) {
     buttonElement.classList.add(config.inactiveButtonClass);
-    buttonElement.setAttribute('disable', true);
+    buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
-    buttonElement.removeAttribute('disable');
+    buttonElement.removeAttribute('disabled');
   }
 };
 
@@ -40,6 +40,7 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   })
 }; 
+
 
 //функция добавления обработчиков
 const setEventListeners = (formElement, config) => {

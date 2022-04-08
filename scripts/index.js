@@ -108,13 +108,13 @@ function createCardNew (evt) {
   const newPlace = createCardElement({name: placeNewTitle, link: placeNewLink});
 
   elementsZone.prepend(newPlace);
-
+  closePopup(popupAdd);
   popupFormAdd.reset();
 
   popupButtonSubmit.classList.add('popup__button-save_disabled');
   popupButtonSubmit.setAttribute('disabled', true);
 
-  closePopup(popupAdd);
+  
 }
 
 

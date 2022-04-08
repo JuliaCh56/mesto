@@ -7,4 +7,10 @@
   border-style: none;
   object-fit: cover;
   font-size: 0;
+  cursor: pointer;
+  transition: opacity 0.5s linear 0.3s;
+}
+
+.element__foto:hover {
+  opacity: 0.6;
 }
