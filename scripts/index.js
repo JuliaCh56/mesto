@@ -1,30 +1,39 @@
-const popup = document.querySelector('.popup'); 
-const openButtonEdit = document.querySelector('.profile__edit-button');
-const openButtonAdd = document.querySelector('.profile__add-button');
-const popupImage = document.querySelector('.popup_big-image');
-const popupEdit = document.querySelector('#popup-edit');
-const popupAdd = document.querySelector('#popup-add');
-const cardTemplate = document.querySelector('.element__template');
+import {Card} from './card.js';
+import {FormValidator, formContent} from './formValidator.js'
+import {
+  initialCards,
+  openButtonEdit,
+  openButtonAdd,
+  popupImage,
+  popupEdit,
+  popupAdd,
+  closeButtonAdd,
+  closeButtonEdit,
+  closeButtonImage,
+  nameInput,
+  activityInput,
+  profileName,
+  profileActivity,
+  elementsZone,
+  popupFormAdd,
+  namePlaceInput,
+  urlPlaceInput,
+  popupButtonSubmit,
+} from './constants.js';
 
-const closeButtonAdd = popupAdd.querySelector('#button-close-add');
-const closeButtonEdit = popupEdit.querySelector('#button-close-edit');
-const closeButtonImage = popupImage.querySelector('#button-close-image');
+const validateFormEdit = new FormValidator(formContent, popupEdit);
+const validateFormAdd = new FormValidator(formContent, popupAdd);
 
-const nameInput = popup.querySelector('#name');
-const activityInput = popup.querySelector('#activity');
-const profileName = document.querySelector('.profile__title');
-const profileActivity = document.querySelector('.profile__subtitle'); 
-const elementsZone = document.querySelector('.elements__zone');
-const popupImageCaption = popupImage.querySelector(".popup__image-caption");
-const popupBigImage = popupImage.querySelector('.popup__image');
 
-const popupFormAdd = popupAdd.querySelector('#popup-form-add');
-const namePlaceInput = popupFormAdd.querySelector('#place'); 
-const urlPlaceInput = popupFormAdd.querySelector('#url');
-const popupButtonSubmit =  popupFormAdd.querySelector('.popup__button-save'); 
+initialCards.forEach((item) => {
+  const card = new Card (item, '.element__template');
+  const cardElement = card.generateCard();
+  elementsZone.append(cardElement);
+});
+
 
 //функция открытия
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.toggle('popup_opened');
   document.addEventListener('keydown', closePopupEscape);
   popup.addEventListener('mousedown', closePopupOverley)
@@ -61,67 +70,22 @@ function handleOpenEditProfilePopup() {
   openPopup(popupEdit);
 }
 
-//функция удаления карточки
-function deleteCard(evt) {
-  evt.target.closest('.element').remove()
-}
-
-// функция установки "лайк"
-function handleLikeButton (evt) {
-  evt.target.classList.toggle('like_active')
-}
-
-// функция открытия попап с картиной
-function openPopupBigImage(evt) {
-  popupImageCaption.textContent = evt.target.alt;
-  popupBigImage.src = evt.target.src;
-  popupBigImage.alt = evt.target.alt;
-
-  openPopup(popupImage)
-};
-
-// функция создания новой карточки
-function createCardElement(item) {
-  const newElement = cardTemplate.content.cloneNode(true);
-  const elementTitle = newElement.querySelector('.element__title');
-  const elementLink = newElement.querySelector('.element__foto');
-  const deleteButton = newElement.querySelector('.element__delete');
-  const handleLikeButtonClick = newElement.querySelector('.element__like');
-
-  elementTitle.textContent = item.name;
-  elementLink.src = item.link;
-  elementLink.alt = item.name;
-
-  deleteButton.addEventListener('click', deleteCard);
-  elementLink.addEventListener('click', openPopupBigImage);
-  handleLikeButtonClick.addEventListener('click', handleLikeButton);
-
-  return newElement
-}
-
-
 //функция добавления нового места
 function createCardNew (evt) {
   evt.preventDefault();
   const placeNewTitle = namePlaceInput.value;
   const placeNewLink = urlPlaceInput.value;
-  const newPlace = createCardElement({name: placeNewTitle, link: placeNewLink});
+  
+  const newPlace = {name: placeNewTitle, link: placeNewLink};
+  const newCard = new Card(newPlace, '.element__template');
 
-  elementsZone.prepend(newPlace);
+  elementsZone.prepend(newCard.generateCard());
   closePopup(popupAdd);
   popupFormAdd.reset();
 
   popupButtonSubmit.classList.add('popup__button-save_disabled');
   popupButtonSubmit.setAttribute('disabled', true);
-
-  
 }
-
-
-//отрисовка карт 
-initialCards.forEach((item) => {
-  elementsZone.append(createCardElement(item));
-});
 
 
 // функция сохранения данных о пользователи
@@ -137,9 +101,16 @@ popupAdd.addEventListener('submit', createCardNew);
 
 //открытие форм
 
-openButtonEdit.addEventListener('click', handleOpenEditProfilePopup);
+openButtonEdit.addEventListener('click', function(){
+validateFormEdit.reset();
+handleOpenEditProfilePopup();
+
+});
+
+
 openButtonAdd.addEventListener('click', function () {
   openPopup(popupAdd);
+  
 });
 
 
@@ -153,3 +124,6 @@ closeButtonEdit.addEventListener('click', function () {
 closeButtonImage.addEventListener('click', function () {
   closePopup(popupImage);
 });
+
+validateFormAdd.enableValidation();
+validateFormEdit.enableValidation();
