@@ -1,12 +1,10 @@
-import {popupImageCaption, popupBigImage, popupImage} from './constants.js';
-import {openPopup} from './index.js';
-
 export class Card {
-  constructor(data, cardSelector ) {
+  constructor(data, cardSelector, handleCardClick ) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
 
   }
 
@@ -23,43 +21,35 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._imageCaption = this._element.querySelector('.element__title'); 
+    this._cardImage = this._element.querySelector('.element__foto');
+    this._deleteButton = this._element.querySelector('.element__delete');
+    this._likeButton = this._element.querySelector('.element__like');
+
+
     this._setEventListeners();
-    this._element.querySelector('.element__title').textContent = this._name; 
-    this._element.querySelector('.element__foto').src = this._link;
-    this._element.querySelector('.element__foto').alt = this._name; 
+    this._imageCaption.textContent = this._name; 
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name; 
     return this._element;
   }
   _deleteCard() {
-    const deleteCardActive = this._element.querySelector('.element__delete').closest('.element');
-    deleteCardActive.remove();
+    this._element.remove();
   }
  
   _handleLikeButton () {
-    const activeLikeButton = this._element.querySelector('.element__like'); 
-    activeLikeButton.classList.toggle('like_active')
+    this._likeButton.classList.toggle('like_active')
   }
 
-  _openPopupBigImage() {
-    popupImageCaption.textContent = this._name;
-    popupBigImage.src = this._link;
-    popupBigImage.alt = this._name;
-  
-    openPopup(popupImage)
-  };
-
-  _setEventListeners() {
-    const elementLink = this._element.querySelector('.element__foto');
-    const deleteButton = this._element.querySelector('.element__delete');
-    const handleLikeButtonClick = this._element.querySelector('.element__like');
-    
-    deleteButton.addEventListener('click', () => {
+  _setEventListeners() {  
+    this._deleteButton.addEventListener('click', () => {
       this._deleteCard()
     });
-    elementLink.addEventListener('click', () => {
-      this._openPopupBigImage()
-    });
-    handleLikeButtonClick.addEventListener('click', () => { 
+    this._likeButton.addEventListener('click', () => { 
       this._handleLikeButton()
+    });
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
     });
   };
 }

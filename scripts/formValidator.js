@@ -29,7 +29,7 @@ export class FormValidator {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.classList.remove(this._errorClass);
-    inputElement.textContent = ' ';
+    inputElement.textContent = '';
   };
 
   _checkInputValidity = (inputElement) => {
@@ -40,11 +40,12 @@ export class FormValidator {
     }
   };
 
-  reset() {
+  resetValidation() {
+    this._toggleButtonState()   
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      this._toggleButtonState(this._inputList, this._buttonElement)
     });
+
 }
 
 _hasInvalidInput() {

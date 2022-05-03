@@ -25,17 +25,14 @@ export const initialCards = [
   }
 ];
 
-export const popup = document.querySelector('.popup'); 
+
 export const openButtonEdit = document.querySelector('.profile__edit-button');
 export const openButtonAdd = document.querySelector('.profile__add-button');
 export const popupImage = document.querySelector('.popup_big-image');
 export const popupEdit = document.querySelector('#popup-edit');
 export const popupAdd = document.querySelector('#popup-add');
-export const closeButtonAdd = popupAdd.querySelector('#button-close-add');
-export const closeButtonEdit = popupEdit.querySelector('#button-close-edit');
-export const closeButtonImage = popupImage.querySelector('#button-close-image');
-export const nameInput = popup.querySelector('#name');
-export const activityInput = popup.querySelector('#activity');
+export const nameInput = popupEdit.querySelector('#name');
+export const activityInput = popupEdit.querySelector('#activity');
 export const profileName = document.querySelector('.profile__title');
 export const profileActivity = document.querySelector('.profile__subtitle'); 
 export const elementsZone = document.querySelector('.elements__zone');
@@ -44,5 +41,4 @@ export const popupBigImage = popupImage.querySelector('.popup__image');
 export const popupFormAdd = popupAdd.querySelector('#popup-form-add');
 export const namePlaceInput = popupFormAdd.querySelector('#place'); 
 export const urlPlaceInput = popupFormAdd.querySelector('#url');
-export const popupButtonSubmit =  popupFormAdd.querySelector('.popup__button-save'); 
 

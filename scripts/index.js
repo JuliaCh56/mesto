@@ -1,5 +1,5 @@
-import {Card} from './card.js';
-import {FormValidator, formContent} from './formValidator.js'
+import {Card} from './Card.js';
+import {FormValidator, formContent} from './FormValidator.js'
 import {
   initialCards,
   openButtonEdit,
@@ -7,9 +7,6 @@ import {
   popupImage,
   popupEdit,
   popupAdd,
-  closeButtonAdd,
-  closeButtonEdit,
-  closeButtonImage,
   nameInput,
   activityInput,
   profileName,
@@ -18,16 +15,22 @@ import {
   popupFormAdd,
   namePlaceInput,
   urlPlaceInput,
-  popupButtonSubmit,
+  popupImageCaption, 
+  popupBigImage
 } from './constants.js';
 
 const validateFormEdit = new FormValidator(formContent, popupEdit);
 const validateFormAdd = new FormValidator(formContent, popupAdd);
 
+function createCard(item) {
+  const card = new Card (item, '.element__template', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
 
 initialCards.forEach((item) => {
-  const card = new Card (item, '.element__template');
-  const cardElement = card.generateCard();
+  const cardElement = createCard(item);
   elementsZone.append(cardElement);
 });
 
@@ -45,6 +48,14 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEscape);
   popup.removeEventListener('mousedown', closePopupOverley)
 }
+
+function handleCardClick (name, link) {
+  popupImageCaption.textContent = name;
+  popupBigImage.src = link;
+  popupBigImage.alt = name;
+
+  openPopup(popupImage)
+};
 
 // функция закрытия попапа по Escape
 function closePopupEscape(evt) {
@@ -75,16 +86,13 @@ function createCardNew (evt) {
   evt.preventDefault();
   const placeNewTitle = namePlaceInput.value;
   const placeNewLink = urlPlaceInput.value;
-  
   const newPlace = {name: placeNewTitle, link: placeNewLink};
-  const newCard = new Card(newPlace, '.element__template');
-
-  elementsZone.prepend(newCard.generateCard());
+  const newCard = createCard(newPlace);
+  elementsZone.prepend(newCard);
   closePopup(popupAdd);
   popupFormAdd.reset();
 
-  popupButtonSubmit.classList.add('popup__button-save_disabled');
-  popupButtonSubmit.setAttribute('disabled', true);
+  validateFormAdd.resetValidation();
 }
 
 
@@ -102,9 +110,8 @@ popupAdd.addEventListener('submit', createCardNew);
 //открытие форм
 
 openButtonEdit.addEventListener('click', function(){
-validateFormEdit.reset();
+validateFormEdit.resetValidation();
 handleOpenEditProfilePopup();
-
 });
 
 
@@ -115,15 +122,14 @@ openButtonAdd.addEventListener('click', function () {
 
 
 //закрытие форм
-closeButtonAdd.addEventListener('click', function () {
-  closePopup(popupAdd);
+
+const closeButtons = document.querySelectorAll('.popup__button-close');
+
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
 });
-closeButtonEdit.addEventListener('click', function () {
-  closePopup(popupEdit);
-});
-closeButtonImage.addEventListener('click', function () {
-  closePopup(popupImage);
-});
+
 
 validateFormAdd.enableValidation();
 validateFormEdit.enableValidation();
