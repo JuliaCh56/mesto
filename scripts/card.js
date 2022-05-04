@@ -5,7 +5,6 @@ export class Card {
     this._alt = data.alt;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-
   }
 
   _getTemplate() {

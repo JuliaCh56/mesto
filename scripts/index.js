@@ -28,12 +28,10 @@ function createCard(item) {
   return cardElement
 }
 
-
 initialCards.forEach((item) => {
   const cardElement = createCard(item);
   elementsZone.append(cardElement);
 });
-
 
 //функция открытия
 export function openPopup(popup) {
@@ -65,14 +63,12 @@ function closePopupEscape(evt) {
   }
 }
 
-
 // функция закрытия по клику на оверлей
 function closePopupOverley(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
   }
 };
-
 
 //функция открытия формы редактирования
 function handleOpenEditProfilePopup() {
@@ -120,16 +116,13 @@ openButtonAdd.addEventListener('click', function () {
   
 });
 
-
 //закрытие форм
-
 const closeButtons = document.querySelectorAll('.popup__button-close');
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
-
 
 validateFormAdd.enableValidation();
 validateFormEdit.enableValidation();
