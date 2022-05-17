@@ -1,7 +1,7 @@
 export class Section {
   constructor({ data, renderer}, containerSelector) {
     this._initialArray = data;
-    this._container = containerSelector;
+    this._container = document.querySelector(containerSelector);
     this._renderer = renderer;
   }
   renderCard () {

@@ -1,6 +1,6 @@
 import './index.css';
 import {Card} from '../components/Card.js';
-import {FormValidator, formContent} from '../components/FormValidator.js'
+import {FormValidator} from '../components/FormValidator.js'
 import {Section} from '../components/Section.js'
 import {PopupWithImage} from '../components/PopupWithImage.js'
 import {PopupWithForm} from '../components/PopupWithForm.js'
@@ -9,19 +9,18 @@ import {
   initialCards,
   openButtonEdit,
   openButtonAdd,
-  popupImage,
   popupEdit,
   popupAdd,
   nameInput,
   activityInput,
-  elementsZone,
   namePlaceInput,
   urlPlaceInput, 
+  formContent
 } from '../utils/constants.js';
 
 const validateFormEdit = new FormValidator(formContent, popupEdit);
 const validateFormAdd = new FormValidator(formContent, popupAdd);
-const popupWithImage = new PopupWithImage(popupImage);
+const popupWithImage = new PopupWithImage('.popup_big-image');
 
 
 function createCard(item) {
@@ -37,7 +36,7 @@ const cardList = new Section({
   renderer: (data) => {
        cardList.addItem(createCard(data));
     }
-}, elementsZone);
+}, '.elements__zone');
 
 cardList.renderCard();
 
@@ -49,7 +48,7 @@ popupWithImage.setEventListeners();
 
 //добавление новой карточки
 const popupWithFormAdd = new PopupWithForm({
-  popupSelector: popupAdd,
+  popupSelector: '#popup-add',
   handleFormSubmit: () => {
     const element = createCard({
       name: namePlaceInput.value,
@@ -61,31 +60,35 @@ const popupWithFormAdd = new PopupWithForm({
 
 //открытие формы добавления места
 openButtonAdd.addEventListener('click', function () {
-  popupWithFormAdd.open();
   validateFormAdd.resetValidation();
+  popupWithFormAdd.open();
 });
 
 popupWithFormAdd.setEventListeners();
 
 
 const userInfo = new UserInfo({
-  name: '.profile__title',
-  activity: '.profile__subtitle'
+  nameSelector: '.profile__title',
+  activitySelector: '.profile__subtitle'
 });
 
+
+
 const popupWithFormEdit = new PopupWithForm({
-  popupSelector: popupEdit,
+  popupSelector: '#popup-edit',
   handleFormSubmit: (formValues) => {
     userInfo.setUserInfo({name: formValues.name, activity:formValues.activity});
     popupWithFormEdit.close();
   }
 });
 
+
 openButtonEdit.addEventListener('click', function(){
-  popupWithFormEdit.open();
-  nameInput.value = userInfo.getUserInfo().name;
-  activityInput.value = userInfo.getUserInfo().activity;
+  const userInfoGet = userInfo.getUserInfo();
+  nameInput.value = userInfoGet.name;
+  activityInput.value = userInfoGet.activity;
   validateFormEdit.resetValidation();
+  popupWithFormEdit.open();
 });
   popupWithFormEdit.setEventListeners();
 
