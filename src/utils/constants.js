@@ -36,10 +36,16 @@ export const formContent = {
 
 export const openButtonEdit = document.querySelector('.profile__edit-button');
 export const openButtonAdd = document.querySelector('.profile__add-button');
+export const openButtonAvatar = document.querySelector('.profile__avatar-container');
 export const popupEdit = document.querySelector('#popup-edit');
 export const popupAdd = document.querySelector('#popup-add');
+export const popupAvatar = document.querySelector('#popup-avatar');
+export const avatarImag = document.querySelector('.profile__avatar');
 export const nameInput = popupEdit.querySelector('#name');
 export const activityInput = popupEdit.querySelector('#activity');
+
+const popupFormAvatar = document.querySelector('#popup-form-avatar');
+export const avatarInput = popupFormAvatar.querySelector('#url-avatar');
 const popupFormAdd = popupAdd.querySelector('#popup-form-add');
 export const namePlaceInput = popupFormAdd.querySelector('#place'); 
 export const urlPlaceInput = popupFormAdd.querySelector('#url');

@@ -14,7 +14,9 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/Аватарка.jpg')%>" alt="аватарка">
+      <div class="profile__avatar-container">
+        <img class="profile__avatar" src="<%=require('./images/Аватарка.jpg')%>" alt="Аватарка">
+      </div>
       <h1 class="profile__title">Жак-Ив Кусто</h1>
       <button class="profile__edit-button" name="editButton" type="button" value="edit-button"></button>
       <p class="profile__subtitle">Исследователь океана</p>
@@ -35,11 +37,11 @@
         value="close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" id="popup-form-edit" name="popup-form-edit">
-        <input type="text" class="popup__field" name="name" id="name" value="" placeholder="Имя"
-          minlength="2" maxlength="40" required>
+        <input type="text" class="popup__field" name="name" id="name" value="" placeholder="Имя" minlength="2"
+          maxlength="40" required>
         <span id="name-error" class="popup__input-error"></span>
-        <input type="text" class="popup__field" name="activity" id="activity" value=""
-          placeholder="О себе" minlength="2" maxlength="200" required>
+        <input type="text" class="popup__field" name="activity" id="activity" value="" placeholder="О себе"
+          minlength="2" maxlength="200" required>
         <span id="activity-error" class="popup__input-error"></span>
         <button type="submit" name="save" value="Сохранить" class="popup__button-save">Сохранить</button>
       </form>
@@ -52,11 +54,10 @@
         value="close-button"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" id="popup-form-add" name="popup-form-add">
-        <input type="text" class="popup__field" name="place" id="place" value=""
-          placeholder="Название" minlength="2" maxlength="30" required>
+        <input type="text" class="popup__field" name="place" id="place" value="" placeholder="Название" minlength="2"
+          maxlength="30" required>
         <span id="place-error" class="popup__input-error"></span>
-        <input type="url" class="popup__field" name="url" id="url" value=""
-          placeholder="Ссылка на картинку" required>
+        <input type="url" class="popup__field" name="url" id="url" value="" placeholder="Ссылка на картинку" required>
         <span id="url-error" class="popup__input-error"></span>
         <button type="submit" name="create" id="create" value="Создать" class="popup__button-save">Создать</button>
       </form>
@@ -72,13 +73,44 @@
     </div>
   </section>
 
-  <template class="element__template">
+  <!-- изменене аватара -->
+  <section class="popup" id="popup-avatar">
+    <div class="popup__container">
+      
+      <button class="popup__button-close" id='button-close-avatar' name="closeButton" type="button"
+        value="close-button"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" id="popup-form-avatar" name="popup-form-avatar">
+        <input type="url" class="popup__field" name="url-avatar" id="url-avatar" value="" placeholder="Ссылка на картинку" required>
+        <span id="url-avatar-error" class="popup__input-error"></span>
+        <button type="submit" name="create" id="create" value="Да" class="popup__button-save">Сохранить</button>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- подтверждение удаление картинки -->
+  <section class="popup" id="popup-confirm">
+    <div class="popup__container">
+      <button class="popup__button-close" id='button-close-confirm' name="closeButton" type="button"
+        value="close-button"></button>
+      <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+      <button type="submit" name="create" id="create" value="Да" class="popup__button-save">Да</button>
+    </div>
+  </section>
+
+
+
+  <template class="element__template" id="card">
     <li class="element">
       <img class="element__foto" src="./images/Эльбрус.jpg" alt="Гора Эльбрус">
       <button class="element__delete" type="button" name="delete"></button>
       <div class="element__name-zone">
         <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like" type="button" name="like"></button>
+        <div class="element__like-zone">
+          <button class="element__like" type="button" name="like"></button>
+          <p class="element__like-number">1</p>
+        </div>
       </div>
     </li>
   </template>
