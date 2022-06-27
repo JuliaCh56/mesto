@@ -8,15 +8,15 @@ import {UserInfo} from '../components/UserInfo.js'
 import {Api} from '../components/Api.js'
 import {PopupWithConfirmation} from '../components/PopupWithConfirmation.js'
 import {
-  initialCards,
+  // initialCards,
   openButtonEdit,
   openButtonAdd,
   popupEdit,
   popupAdd,
   popupAvatar,
   openButtonAvatar,
-  // nameInput,
-  // activityInput,
+  nameInput,
+  activityInput,
   // namePlaceInput,
   // urlPlaceInput, 
   formContent
@@ -48,13 +48,19 @@ const popupWithConfirmation = new PopupWithConfirmation (initialClass.popupConfi
 const popupWithFormEdit = new PopupWithForm(initialClass.popupEditSelector, handleFormSubmitEdit);
 const userInfo = new UserInfo({
   nameSelector: initialClass.profileNameSelector,
-  activitySelector: initialClass.profileActivitySelector,
-  activitySelector: initialClass.avatarImage,
+  aboutSelector: initialClass.profileActivitySelector,
+  avatarSelector: initialClass.avatarImage,
 });
 
 const popupWithFormAdd = new PopupWithForm(initialClass.popupAddSelector, handleFormSubmitAdd);
 
 const popupWithFormAvatar = new PopupWithForm(initialClass.popupAvatarSelector, handleFormSubmitAvatar);
+
+//ф-я открытия большой картинки
+function handleCardClick (name, link) {
+  popupWithImage.open(name, link);
+};
+
 
 
 
@@ -67,7 +73,7 @@ const api = new Api({
 });
 
 Promise.all([
-  api.getUserInfo(),
+  api.getUserItem(),
   api.getCards()
 ])
 .then((values) => {
@@ -79,18 +85,30 @@ Promise.all([
 });
 
 
-//ф-я открытия большой картинки
-function handleCardClick (name, link) {
-  popupWithImage.open(name, link);
-};
+//создание карт
+function createCard(dataCard, id) {
+  const card = new Card ({
+  data: dataCard,  
+  handleCardClick, 
+  handleDeleteClick, 
+  handleLikeClick}, 
+  initialClass.cardId, 
+  id);
+  const cardElement = card.generateCard();
+  return cardElement
+} //newCard
+
+
+//вставка разметки на страницу
+const cardList = new Section({
+  renderer: (cardItem, id) => {
+       cardList.addItem(createCard(cardItem, id));
+    }
+}, initialClass.containerSelector);
 
 
 
-// ф-я открытия подтверждения удаления 
-function handleDeleteClick(id, card) {
-  popupWithConfirmation.setSubmitAction(() => handleConfirmation(id, card))
-  popupWithConfirmation.open();
-}
+
 
 
 // ф-я удаления
@@ -105,10 +123,20 @@ function handleConfirmation(id, card) {
     });
 }
 
+
+// ф-я открытия подтверждения удаления 
+function handleDeleteClick(id, card) {
+  popupWithConfirmation.setSubmitAction(() => handleConfirmation(id, card))
+  popupWithConfirmation.open();
+}
+
+
+
+
 // ф-я лайк (установить/снять)
-function handleLikeClick(id, card, isLiked) {
+function handleLikeClick(cardId, card, isLiked) {
   if (isLiked) {
-    api.deleteLike(id)
+    api.deleteLike(cardId)
       .then((data) => {
         card.setLikes(data.likes);
       })
@@ -116,7 +144,7 @@ function handleLikeClick(id, card, isLiked) {
         console.log(err);
       });
   } else {
-     api.setLike(id)
+     api.setLike(cardId)
       .then((data) => {
         card.setLikes(data.likes);
       })
@@ -131,7 +159,7 @@ function handleLikeClick(id, card, isLiked) {
 function handleFormSubmitEdit(inputsData) {
   popupWithFormEdit.renderButonSave(true);
 
-  api.saveUserChanges(inputsData)
+  api.saveUserInfo(inputsData)
     .then((data) => {
       userInfo.setUserInfo(data);
       popupWithFormEdit.close();
@@ -147,35 +175,15 @@ function handleFormSubmitEdit(inputsData) {
 
 
 // ф-я заполнения инпутов
-function handleInput() {
-  const userData = userInfo.getUserInfo();
-  profileInput.forEach(input => {
-    input.value = userData[input.name];
-  });
-} // handleTextInput
+// function handleInput() {
+//   const userData = userInfo.getUserInfo();
+//   profileInput.forEach(input => {
+//     input.value = userData[input.name];
+//   });
+// } // handleTextInput
  
 
-//создание карт
-function createCard(dataCard, id) {
-  const card = new Card ({
-  data: dataCard,  
-  handleCardClick, 
-  handleDeleteClick, 
-  handleLikeClick}, 
-  initialClass.cardId, 
-  id);
 
-  const cardElement = card.generateCard();
-  return cardElement
-} //newCard
-
-
-//вставка разметки на страницу
-const cardList = new Section({
-  renderer: (cardItem, id) => {
-       cardList.addItem(createCard(cardItem, id));
-    }
-}, initialClass.containerSelector);
 
 
 //ф-я добавление новой карточки
@@ -223,7 +231,9 @@ openButtonAdd.addEventListener('click', function () {
 //открытие формы данных о пользователе
 
 openButtonEdit.addEventListener('click', function(){
-  handleInput();
+  const userInfoGet = userInfo.getUserInfo();
+  nameInput.value = userInfoGet.name;
+  activityInput.value = userInfoGet.about;
   validateFormEdit.resetValidation();
   popupWithFormEdit.open();
 });

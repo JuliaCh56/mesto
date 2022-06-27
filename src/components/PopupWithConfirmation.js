@@ -3,7 +3,8 @@ import { Popup } from './Popup.js'
 export class PopupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._buttonConfirmation = this._popup.querySelector('.popup__form');
+    this._popup = document.querySelector(popupSelector);
+    this._buttonConfirmation = document.querySelector('.element__delete');
   }
 
   setSubmitAction(submitAction) {
@@ -12,10 +13,10 @@ export class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._buttonConfirmation.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleSubmitCallback()
-    });
+    // this._buttonConfirmation.addEventListener("submit", (evt) => {
+    //   evt.preventDefault();
+    //   this._handleSubmitCallback()
+    // });
   }
  
 }

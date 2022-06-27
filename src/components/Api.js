@@ -1,14 +1,14 @@
 export  class Api {
-  constructor(url, headers) {
-    this._url = url;
-    this._userUrl = `${this._url}/users/me`;
-    this._cardsUrl = `${this._url}/cards`;
-    this._likesUrl = `${this._url}/cards/likes`;
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl;
+    this._userUrl = `${this._baseUrl}/users/me`;
+    this._cardsUrl = `${this._baseUrl}/cards`;
+    this._likesUrl = `${this._baseUrl}/cards/likes`;
     this._token = headers['authorization']; //token
   }
 
 //получение данных о пользователе
-getUserInfo() {
+getUserItem() {
   return fetch(this._userUrl, {
     headers: {
       authorization: this._token,
@@ -23,7 +23,7 @@ getUserInfo() {
 } // getUserData
 
  //обновление данных о пользователе
- setUserInfo({name, activity}) {
+ saveUserInfo({name, about}) {
   return fetch(this._userUrl, {
     method: 'PATCH',
     headers: {
@@ -32,7 +32,7 @@ getUserInfo() {
     },
     body: JSON.stringify({
       name: name,
-      activity: activity,
+      about: about,
     })
   })
   .then(res => {
